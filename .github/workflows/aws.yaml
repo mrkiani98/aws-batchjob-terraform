@@ -29,12 +29,12 @@ jobs:
         terraform_wrapper: false
     - name: terrafrom init
       run: |
-        terraform -chdir="./terraform-manifests" init
+        terraform -chdir="./terraform-manifests" init -lock=false
       id: terrafrom-init
     - name: apply terraform manifests
       id: terraform-apply
       run: |
-        terraform -chdir="./terraform-manifests" apply --auto-approve
+        terraform -chdir="./terraform-manifests" apply --auto-approve -lock=false
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
