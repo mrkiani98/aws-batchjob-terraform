@@ -66,11 +66,11 @@ resource "aws_batch_job_definition" "job" {
       },
       {
         name  = "SRC_BUCKET"
-        value = aws_s3_bucket.input_bucket.name
+        value = aws_s3_bucket.input_bucket.bucket_domain_name
       },
       {
         name  = "DST_BUCKET"
-        value = aws_s3_bucket.output_bucket.name
+        value = aws_s3_bucket.output_bucket.bucket_domain_name
       },
     ]
 
