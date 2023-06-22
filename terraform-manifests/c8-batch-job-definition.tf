@@ -59,6 +59,21 @@ resource "aws_batch_job_definition" "job" {
       }
     ]
 
+    environment = [
+      {
+        name  = "AWS_REGION"
+        value = var.aws_region
+      },
+      {
+        name  = "SRC_BUCKET"
+        value = aws_s3_bucket.input_bucket.name
+      },
+      {
+        name  = "DST_BUCKET"
+        value = aws_s3_bucket.output_bucket.name
+      },
+    ]
+
     executionRoleArn = aws_iam_role.ecs_task_execution_role.arn
   })
 tags = {
