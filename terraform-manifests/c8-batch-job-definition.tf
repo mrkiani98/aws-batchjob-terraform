@@ -41,7 +41,7 @@ resource "aws_batch_job_definition" "job" {
   parameters = {}
   container_properties = jsonencode({
     command    = ["node", "app.js"]
-    image      = aws.aws_ecr_repository.kiani.repository_url
+    image      = aws_ecr_repository.kiani.repository_url
     jobRoleArn = "${aws_iam_role.job_role.arn}"
 
     fargatePlatformConfiguration = {
