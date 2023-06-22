@@ -29,9 +29,8 @@ resource "aws_iam_policy" "s3_policy" {
     {
         "Effect": "Allow",
         "Action": [
-            "s3:Get*",
-            "s3:List*",
-            "s3:Put*"
+            "s3:*",
+            "s3-object-lambda:*"
         ],
         "Resource": [
           "${aws_s3_bucket.input_bucket.arn}",
