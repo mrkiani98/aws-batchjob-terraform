@@ -1,0 +1,8 @@
+aws_batch_service_role_name = "regov-batch-service-role"
+aws_batch_compute_environment_security_group_name = "regov-batch-compute-security-group"
+compute_environment_name = "regov"
+job_role_name = "regov-job-role"
+batch_s3_policy_name = "regov-s3-batch-policy"
+job_queue_name = "regov-job-queue"
+ecs_batch_exec_role = "regov-ecs-batch-exec-role"
+regov_job_name = "regov-job"

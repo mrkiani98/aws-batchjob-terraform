@@ -1,0 +1,3 @@
+cloudwatch_event_batch_job_role_name = "regov-event-batch-job-role"
+cloudwatch_event_submit_batch_role_name = "regov-event-submit-batch-role"
+project_name = "regov"

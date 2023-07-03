@@ -1,11 +1,19 @@
-# Create VPC Terraform Module
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
+output "list_of_available_zones" {
+  description = "The list of the available zones"
+  value       = data.aws_availability_zones.available.names
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.16.1"
   #version = "~> 2.78"
 
   # VPC Basic Details
-  name = "${local.name}-${var.vpc_name}"
+  name = "${var.vpc_name}"
   cidr = var.vpc_cidr_block
   azs             = data.aws_availability_zones.available.names
   public_subnets  = var.vpc_public_subnets
@@ -27,8 +35,8 @@ module "vpc" {
   enable_dns_support   = true
 
 
-  tags = local.common_tags
-  vpc_tags = local.common_tags
+#   tags = local.common_tags
+#   vpc_tags = local.common_tags
 
   # Additional Tags to Subnets
   public_subnet_tags = {

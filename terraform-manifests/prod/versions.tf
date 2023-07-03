@@ -1,4 +1,3 @@
-# Terraform Block
 terraform {
   required_version = "~> 1.0" 
   required_providers {
@@ -13,7 +12,7 @@ terraform {
   }
   backend "s3" {
     bucket = "kiani-terraform-state"
-    key    = "dev/terraform/terraform.tfstate"
+    key    = "prod/terraform/terraform.tfstate"
     region = "ap-southeast-1" 
     dynamodb_table = "terraform-lock"    
   } 
@@ -24,4 +23,3 @@ provider "aws" {
   region  = var.aws_region
   # profile = "admin"
 }
-
