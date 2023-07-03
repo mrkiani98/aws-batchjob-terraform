@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - "main"
+      - "dev"
 env:
   AWS_REGION_NAME: ap-southeast-1
 
@@ -32,9 +32,9 @@ jobs:
         ECR_REPOSITORY: kiani
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY-prod .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY-prod
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY-prod"
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY-dev .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY-dev
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY-dev"
 
     - name: terraform setup
       uses: hashicorp/setup-terraform@v2
@@ -43,9 +43,9 @@ jobs:
         terraform_wrapper: false
     - name: terrafrom init
       run: |
-        terraform -chdir="./terraform-manifests/prod" init -lock=false
+        terraform -chdir="./terraform-manifests/dev" init -lock=false
       id: terrafrom-init
     - name: apply terraform manifests
       id: terraform-apply
       run: |
-        terraform -chdir="./terraform-manifests/prod" apply --auto-approve -lock=false
+        terraform -chdir="./terraform-manifests/dev" apply --auto-approve -lock=false
